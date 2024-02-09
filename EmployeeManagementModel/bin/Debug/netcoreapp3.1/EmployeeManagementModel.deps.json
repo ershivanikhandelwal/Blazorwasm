@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "EmployeeManagementModel/1.0.0": {
+        "runtime": {
+          "EmployeeManagementModel.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "EmployeeManagementModel/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

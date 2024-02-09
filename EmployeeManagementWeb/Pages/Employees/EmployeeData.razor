@@ -1,0 +1,18 @@
+﻿@inherits EmployeeDataBase
+@page "/allEmployee"
+<h3>All Employees</h3>
+
+<TelerikGrid Data="@Employees"
+             Pageable="true"
+             Sortable="true">
+    <GridColumns>
+        <GridColumn Field="EmployeeId" Title="Employee ID" />
+        <GridColumn Field="FirstName" Title="First Name" />
+        <GridColumn Field="LastName" Title="Last Name" />
+        <GridColumn Field="Email" Title="Email" />
+        <GridColumn Field="DateOfBirth" Title="Date Of Birth" />
+        <GridColumn Field="Gender" Title="Gender" />
+        <GridColumn Field="PhotoPath" Title="Photo Path" />
+        <GridColumn Field="Department.DepartmentName" Title="Department Name" />
+    </GridColumns>
+</TelerikGrid>

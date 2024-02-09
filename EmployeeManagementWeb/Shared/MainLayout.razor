@@ -1,0 +1,46 @@
+﻿@layout TelerikLayout
+@inherits LayoutComponentBase
+@using EmployeeManagementWeb.Common;
+@using EmployeeManagementWeb.ExceptionHandling;
+
+<div class="page">
+    <div class="sidebar">
+            <NavMenu />
+    </div>  
+    <main>
+        <div class="container pull-right">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <article class="content px-4 container">
+            <CustomErrorBoundry @ref="errorBoundary">
+                <ChildContent>@Body</ChildContent>
+                <ErrorContent Context="Exception">
+                    <div class="alert alert-primary">
+                        <h3>@Exception.GetType()</h3>
+                        <h3>@Exception.Message</h3>
+                        <button class="btn btn-info" @onclick="()=>errorBoundary.Recover()">Clear</button>
+                    </div>
+                </ErrorContent>
+            </CustomErrorBoundry>
+        </article>
+    </main>
+</div>
+
+@code{
+    [Inject]
+    public ILocalStorage LocalStorage { get; set; }
+    private CustomErrorBoundry errorBoundary;
+    protected override void OnInitialized()
+    {
+        errorBoundary = new CustomErrorBoundry();
+    }
+}
+

@@ -1,0 +1,105 @@
+﻿@using EmployeeManagementWeb.Common;
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        @if(CommonConstants.isUserLogedin)
+        {
+            <a class="navbar-brand" href="">Hi, @username</a>
+        }
+        else
+        {
+            <a class="navbar-brand" href="">Employee Management</a>
+        }
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+    <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+        <nav class="flex-column">
+            <div class="nav-item px-3">
+            @if (CommonConstants.isUserLogedin)
+                {
+                    <NavLink class="nav-link" href="/employeeList" Match="NavLinkMatch.All">
+                        <span class="oi oi-home" aria-hidden="true"></span> Employee List
+                    </NavLink>
+                }
+            @if (CommonConstants.isUserLogedin)
+                {
+                    <NavLink class="nav-link" href="/addemployee" @onclick="HandleLink">
+                        <span class="oi oi-home" aria-hidden="true"></span> Add Employee
+                    </NavLink>
+                }
+            @if (CommonConstants.isUserLogedin)
+                {
+                    <NavLink class="nav-link" href="/allEmployee" Match="NavLinkMatch.All">
+                        <span class="oi oi-home" aria-hidden="true"></span> View Employees
+                    </NavLink>
+                } 
+            @if (!CommonConstants.isUserLogedin)
+            {
+                <NavLink class="nav-link" href="/login" Match="NavLinkMatch.All">
+                    <span class="oi oi-home" aria-hidden="true"></span> Login
+                </NavLink>
+            }
+            @if (!CommonConstants.isUserLogedin)
+                {
+                    <NavLink class="nav-link" href="/signup" Match="NavLinkMatch.All">
+                        <span class="oi oi-home" aria-hidden="true"></span> Signup
+                    </NavLink>
+                } 
+            @if (CommonConstants.isUserLogedin)
+            {
+                <NavLink class="nav-link" href="/logout" Match="NavLinkMatch.All">
+                    <span class="oi oi-home" aria-hidden="true"></span> Logout
+                </NavLink>
+            }
+        </div>
+        </nav>
+    </div>
+
+@code {
+    private bool collapseNavMenu = true;
+    [Inject]
+    public NavigationManager _navigationManager{ get; set; }
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    [Inject]
+    public ILocalStorage LocalStorage { get; set; }
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+    public void HandleLink()
+    {
+        _navigationManager.NavigateTo("/addemployee", false);
+    }
+    private string username = string.Empty;
+    private System.Threading.Timer? timer;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        timer = new System.Threading.Timer(async (object? stateInfo) =>
+        {
+            string token = await LocalStorage.GetKeyFromLocalStorage("jwtToken");
+            if (token != null)
+            {
+                CommonConstants.isUserLogedin = true;
+                var temp = token.Split(';')[1];
+                if (temp != username)
+                {
+                    username = temp;
+                    StateHasChanged();
+                }
+            }
+            else
+            {
+                CommonConstants.isUserLogedin = false;
+            }
+        }, new System.Threading.AutoResetEvent(false), 333, 333);
+
+    }
+}

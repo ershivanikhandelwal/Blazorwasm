@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "Hash": "P0EiBl+CkWkl62Jd42QfaeknWlFWhB0ZSL/fj0qfzs4=",
+  "Source": "EmployeeManagment.Common.Component",
+  "BasePath": "_content/EmployeeManagment.Common.Component",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "EmployeeManagment.Common.Component\\wwwroot",
+      "Source": "EmployeeManagment.Common.Component",
+      "ContentRoot": "D:\\Blazor\\EmployeeManagment.Common.Component\\wwwroot\\",
+      "BasePath": "_content/EmployeeManagment.Common.Component",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\Blazor\\EmployeeManagment.Common.Component\\wwwroot\\background.png",
+      "SourceId": "EmployeeManagment.Common.Component",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Blazor\\EmployeeManagment.Common.Component\\wwwroot\\",
+      "BasePath": "_content/EmployeeManagment.Common.Component",
+      "RelativePath": "background.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\background.png"
+    },
+    {
+      "Identity": "D:\\Blazor\\EmployeeManagment.Common.Component\\wwwroot\\exampleJsInterop.js",
+      "SourceId": "EmployeeManagment.Common.Component",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Blazor\\EmployeeManagment.Common.Component\\wwwroot\\",
+      "BasePath": "_content/EmployeeManagment.Common.Component",
+      "RelativePath": "exampleJsInterop.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\exampleJsInterop.js"
+    }
+  ]
+}

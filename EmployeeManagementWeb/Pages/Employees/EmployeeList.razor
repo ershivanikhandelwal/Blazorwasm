@@ -1,0 +1,26 @@
+﻿<h3>EmployeeList</h3>
+<h2>Selected Employees: @selectedEmployeeCount</h2>
+@inherits EmployeeListBase
+<input type="checkbox" id="showFooter" @bind="ShowFooter" />
+<label for="showFooter">Show Footer</label>
+@page "/employeeList"
+@if (!CommonConstants.isUserLogedin)
+{
+    <div>
+        <p>You are not authorized to access this page. Please Login.</p>
+    </div>
+}
+else if (Employees == null)
+{
+    <div class="spinner"></div>
+}
+else
+{
+    <div class="card-deck">
+        @foreach (var employee in Employees)
+        {
+            <DisplayEmployee Employee="@employee" ShowFooter="@ShowFooter" OnEmployeeSelection="@EmployeeSelectionChange" OnEmployeeDelete="@EmployeeDelete"></DisplayEmployee>
+        }
+    </div>
+}
+

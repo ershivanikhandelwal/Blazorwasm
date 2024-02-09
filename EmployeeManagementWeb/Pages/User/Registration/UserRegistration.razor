@@ -1,0 +1,68 @@
+﻿@inherits UserRegistrationBase
+@page "/Signup"
+@if (isRequestProcessed)
+{
+    <div class="spinner"></div>
+}
+<EditForm Model="@user" OnValidSubmit="SaveChanges">
+    <ObjectGraphDataAnnotationsValidator />
+    <ValidationSummary />
+    <h3>Registration</h3>
+    <div class="form-group row">
+        <label for="userName" class="col-sm-2 col-form-label">
+            Username
+        </label>
+        <div class="col-sm-10">
+            <InputText id="userName" class="form-control" placeholder="Username"
+            @bind-Value="user.Username" />
+            <ValidationMessage For="@(()=>user.Username)"></ValidationMessage>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="firstName" class="col-sm-2 col-form-label">
+            Username
+        </label>
+        <div class="col-sm-10">
+            <InputText id="firstName" class="form-control" placeholder="First Name"
+            @bind-Value="user.Email" />
+            <ValidationMessage For="@(()=>user.Email)"></ValidationMessage>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="password" class="col-sm-2 col-form-label">
+            Password
+        </label>
+        <div class="col-sm-10">
+            <InputText type="password" id="password" class="form-control" placeholder="Password"
+            @bind-Value="user.Password" />
+            <ValidationMessage For="@(()=>user.Password)"></ValidationMessage>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="confirmPassword" class="col-sm-2 col-form-label">
+            Confirm Password
+        </label>
+        <div class="col-sm-10">
+            <InputText type="password" id="confirmPassword" class="form-control" placeholder="Confirm Password"
+            @bind-Value="user.ConfirmPassword" />
+            <ValidationMessage For="@(()=>user.ConfirmPassword)"></ValidationMessage>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="phone" class="col-sm-2 col-form-label">
+            Phone
+        </label>
+        <div class="col-sm-10">
+            <InputText id="phone" class="form-control" placeholder="Phone Number"
+            @bind-Value="user.Phone" />
+            <ValidationMessage For="@(()=>user.Phone)"></ValidationMessage>
+        </div>
+    </div>
+    <div class="form-group row m-3">
+        <div class="col-sm-1">
+            <button class="btn btn-primary" type="submit" disabled="@isRequestProcessed">Register</button>
+        </div>
+    </div>
+</EditForm>
+<AlertDialog @ref=alertDialog AlertTitle="Alert" AlertMessage=@message>
+</AlertDialog>

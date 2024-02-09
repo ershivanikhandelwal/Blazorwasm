@@ -1,0 +1,25 @@
+﻿<h3>Logout</h3>
+@page "/logout"
+@if (isRequestProcessed)
+{
+    <div class="spinner"></div>
+}
+<div>
+    You have been successfully logged out.
+</div>
+
+@code {
+    [Inject]
+    public ILocalStorage LocalStorage { get; set; }
+    public bool isRequestProcessed = false;
+    [Inject]
+    public NavigationManager _navigationManager{ get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        isRequestProcessed = true;
+        await LocalStorage.ClearLocalStorage("jwtToken");
+        StateHasChanged();
+        isRequestProcessed = false;
+        _navigationManager.NavigateTo("/login", true);
+    }
+}

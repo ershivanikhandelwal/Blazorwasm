@@ -1,0 +1,23 @@
+﻿@page "/"
+<PageTitle>Index</PageTitle>
+@if(CommonConstants.isUserLogedin)
+{
+    <EmployeeList/>
+}
+else
+{
+    <Login/>
+}
+
+@code{
+    [Inject]
+    public ILocalStorage LocalStorage { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        string token = await LocalStorage.GetKeyFromLocalStorage("jwtToken");
+        if (token != null)
+        {
+            CommonConstants.isUserLogedin = true;
+        }
+    }
+}

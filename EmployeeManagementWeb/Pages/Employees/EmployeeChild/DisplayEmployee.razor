@@ -1,0 +1,23 @@
+﻿@inherits DisplayEmployeeBase
+
+<div class="card m-3" style="min-width: 18rem; max-width:25.5%;">
+    <div class="card-header">
+        <h3>@Employee.FirstName @Employee.LastName</h3>
+        <input type="checkbox" @onchange="checkBoxSelection"/>
+    </div>
+    <img class="card-img-top imageThumbnail" src="@Employee.PhotoPath" />
+    @if (ShowFooter)
+    {
+        <div class="card-footer text-center">
+            <a href="@($"Employeedetail/{Employee.EmployeeId}")" class="btn btn-primary m-1">View</a>
+
+            <a href="@($"EditEmployee/{Employee.EmployeeId}")" class="btn btn-primary m-1">Edit</a>
+
+            <a @onclick="Delete_click" class="btn btn-danger m-1">Delete</a>
+        </div>
+    }    
+</div>
+<ConfirmDialog @ref=DeleteConfirmationDialog DeleteConfirmation="Confirm_Click"
+               ConfirmationTitle="Delete Confirmation" ConfirmationMessage=@($"Are you sure you want to delete \"{Employee.FirstName}\"")>
+</ConfirmDialog>
+
